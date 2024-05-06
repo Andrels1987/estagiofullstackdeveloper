@@ -1,0 +1,97 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #d4d8da;
+}
+.top{
+    width: 100%;
+    background-color: #018abe;
+    height: 150px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: self-end;
+    justify-content: center;
+}
+.top section{
+    height: 110px;
+    background-color: #97cadb;
+    width: 90%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1em .5em;
+}
+.top section form{
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+}
+.top section form input{
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-color: white;
+    background-size: 25px;
+    width: 100%;
+    border-radius: 15px;
+    padding: .8em 2.5em;
+    outline: none;
+    border: none;
+    align-self: center;
+    font-family: fantasy;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-size: small;
+}
+.top section form button{
+    border-radius: 8px;
+    width: 150px;
+    align-self: flex-end;
+    padding: 5px;
+    background-color: rgb(87, 236, 191);
+}
+#main{
+    padding-top: .5em;
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    background-color: #fcfcfc;
+    height: auto;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+#main .item{
+    width: 194px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    border: solid 1px rgb(18, 58, 80);
+}
+
+#main .item img{
+    width: 104px;
+    height: 130px;
+}
+#main .item h2{
+    font-size: x-small;
+    width: 158px;
+    font-family: none;
+    padding-top: .5em;
+    font-style: inherit;
+    font-weight: bold;
+}
+#main .item p{
+    font-size: small;
+    font-weight: 700;
+    border: solid 1px rgb(114, 112, 112);
+}
