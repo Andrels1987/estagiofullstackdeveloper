@@ -16,6 +16,27 @@ return the following informations:
 */
 //function to return the URL used to make a call to amazon website
 const amazonURL = (productSearchKey) => `https://www.amazon.com/s?k=${productSearchKey}&crid=20Q3NDNHZP4LD&sprefix=flash%2Caps%2C196&ref=nb_sb_noss_1`
+const modelItens = (collection) => {
+    let itensList = {}
+    return Array.from(collection).map(item => {
+        let imgURLElement = item.querySelector(".s-image");
+        let productTitleElement = item.querySelector('.a-section[data-cy="title-recipe"]');
+        let numerOfReviewsElement = item.querySelector('.s-csa-instrumentation-wrapper');
+        let ratingsElement = item.querySelector('.a-icon-alt');
+
+        ratings = ratingsElement == null ? "no ratings" : ratingsElement.textContent
+        numberOfReviews = numerOfReviewsElement == null ? 0 : numerOfReviewsElement.textContent
+        return {
+            ...itensList,
+            imgURL: imgURLElement.src,
+            productTitle: productTitleElement.textContent,
+            ratings,
+            numberOfReviews
+        }
+
+    })
+}
+
 const connectToAmazon = async (url) => {
     let itens = [];
     const outcome = await axios.get(url, {
@@ -35,23 +56,7 @@ const connectToAmazon = async (url) => {
     let numberOfReviews = 0;
     const dom = new JSDOM(data, { virtualConsole });
     let collection = dom.window.document.querySelectorAll('.s-asin');
-    for (let index = 0; index < collection.length; index++) {
-        let imgURLElement = collection[index].querySelector(".s-image");
-        let productTitleElement = collection[index].querySelector('.a-section[data-cy="title-recipe"]');
-        let numerOfReviewsElement = collection[index].querySelector('.s-csa-instrumentation-wrapper');
-        let ratingsElement = collection[index].querySelector('.a-icon-alt');
-        
-        //Some ratings and number of reviews return null
-        ratings = ratingsElement == null ? "no ratings" : ratingsElement.textContent
-        numberOfReviews = numerOfReviewsElement == null ? 0 : numerOfReviewsElement.textContent
-        //
-        itens.push({
-            imgURL: imgURLElement.src,
-            productTitle: productTitleElement.textContent,
-            ratings,
-            numberOfReviews
-        })
-    }
+    itens = modelItens(collection);  
     return itens;
 
 }
