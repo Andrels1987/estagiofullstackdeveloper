@@ -27,10 +27,18 @@ function createThePageView(results) {
         item.append(ratings);
         item.append(views);
         main.append(item);
+
+        item.addEventListener(("mouseover"), () =>{  
+            item.classList.add("item-hovering");        
+        })
+        item.addEventListener(("mouseout"), () =>{ 
+            item.classList.remove("item-hovering");        
+        })
     })
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
+    itensCard = document.querySelectorAll("item");  
     let input = document.getElementById("search");
     let btn = document.getElementById("btn");
     let main = document.getElementById("main");
@@ -49,11 +57,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
                 let results = await callApi(input.value);
                 if (results.length > 0) {
-                    createThePageView(results)
+                    createThePageView(results)  
                 }
 
             }
         })
     }
+    
+
+    
+
 
 });
